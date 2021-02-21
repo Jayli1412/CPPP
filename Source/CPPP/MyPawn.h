@@ -27,6 +27,17 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere)
-	USceneComponent* Our	VisibleComponent;
+	USceneComponent* OurVisibleComponent;
+
+	//입력 함수
+	void Move_XAxis(float AxisValue);
+	void Move_YAxis(float AxisValue);
+	void StartGrowing();
+	void StopGrowing();
+
+public:
+	//입력 변수
+	FVector CurrnntVelocity;
+	bool bGrowing;
 
 };
