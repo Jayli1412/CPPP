@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TextRenderComponent.h"
+#include "Engine/Classes/Components/TextRenderComponent.h"
 #include "Countdown.generated.h"
 
 UCLASS()
@@ -29,5 +29,11 @@ public:
 	UTextRenderComponent* CountdownText;
 
 	void UpdateTimerDisplay();
+
+	void AdvancedTimer();
+
+	void CountdownFinished();
+
+	FTimerHandle CountdownTimerHandle;
 
 };
