@@ -36,7 +36,7 @@ void ACountdown::Tick(float DeltaTime)
 
 void ACountdown::UpdateTimerDisplay()
 {
-	CountdownText->SetText(FString::FromInt(FMath::Max(CountdownTime, 0)));
+	CountdownText->SetText(FText::FromString(FString::FromInt(FMath::Max(CountdownTime, 0))));
 }
 
 void ACountdown::AdvancedTimer()
@@ -46,7 +46,7 @@ void ACountdown::AdvancedTimer()
 
 	if (CountdownTime < 1)
 	{
-		//Ä«¿îÆ® ´Ù¿îÀÌ ¿Ï·áµÇ¸é Å¸ÀÌ¸Ó Á¤Áö
+		//Ä«ï¿½ï¿½Æ® ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 		GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
 		CountdownFinished();
 	}
@@ -54,5 +54,5 @@ void ACountdown::AdvancedTimer()
 
 void ACountdown::CountdownFinished()
 {
-	CountdownText->SetText(TEXT("Go!"));
+	CountdownText->SetText(FText::FromString(FString("Go!")));
 }

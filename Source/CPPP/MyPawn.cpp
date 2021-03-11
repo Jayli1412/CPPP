@@ -31,32 +31,32 @@ void AMyPawn::BeginPlay()
 // Called every frame
 void AMyPawn::Tick(float DeltaTime)
 {
-	//Grow ¾×¼Ç¿¡ µû¶ó Å°¿ì°í ÁÙÀÌ´Â °Í Ã³¸®
+	//Grow ï¿½×¼Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
 	{
 		float CurrentScale = OurVisibleComponent->GetComponentScale().X;
 		if (bGrowing)
 		{
-			//1ÃÊ¿¡ °ÉÃÄ µÎ¹è·Î Å°¿ò
+			//1ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ Å°ï¿½ï¿½
 			CurrentScale += DeltaTime;
 		}
 
 		else
 		{
-			//Å°¿î ¼Óµµ´ë·Î Àý¹ÝÀ¸·Î ÁÙÀÓ
+			//Å°ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			CurrentScale -= (DeltaTime * 0.5f);
 		}
 
-		//Ã³À½ Å©±â 2¹èº¸´Ù Ä¿Áö°Å³ª Ã³À½ Å©±âº¸´Ù ÀÛ¾ÆÁö´Â °É ¹æÁö
+		//Ã³ï¿½ï¿½ Å©ï¿½ï¿½ 2ï¿½èº¸ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½Å³ï¿½ Ã³ï¿½ï¿½ Å©ï¿½âº¸ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		CurrentScale = FMath::Clamp(CurrentScale, 1.0f, 2.0f);
 		OurVisibleComponent->SetWorldScale3D(FVector(CurrentScale));
 
 	}
 
-	//MoveX MoveY Ãà¿¡ µû¶ó ÀÌµ¿ Ã³¸®
+	//MoveX MoveY ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ Ã³ï¿½ï¿½
 	{
-		if (!CurrnntVelocity.IsZero())
+		if (!CurrentVelocity.IsZero())
 		{
-			FVector NewLocation = GetActorLocation() + (CurrnntVelocity * DeltaTime);
+			FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
 			SetActorLocation(NewLocation);
 		}
 	}
@@ -67,11 +67,11 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	//Grow Å°¸¦ ´©¸£°Å³ª ¶¿ ¶§ ¹ÝÀÀ
+	//Grow Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	InputComponent->BindAction("Grow", IE_Pressed, this, &AMyPawn::StartGrowing);
 	InputComponent->BindAction("Grow", IE_Released, this, &AMyPawn::StopGrowing);
 
-	//MoveX¿Í MoveY µÎ ÀÌµ¿ ÃàÀÇ °ª¿¡ ¸Å ÇÁ·¹ÀÓ ¹ÝÀÀ
+	//MoveXï¿½ï¿½ MoveY ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	InputComponent->BindAxis("MoveX", this, &AMyPawn::Move_XAxis);
 	InputComponent->BindAxis("MoveY", this, &AMyPawn::Move_YAxis);
 
@@ -80,7 +80,7 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AMyPawn::Move_XAxis(float AxisValue)
 {
 
-	//ÃÊ´ç 100À¯´ÖÀ» ¾Õ ¶Ç´Â µÚ·Î ¿òÁ÷ÀÓ
+	//ï¿½Ê´ï¿½ 100ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CurrnntVelocity.X = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
 
 }
@@ -88,7 +88,7 @@ void AMyPawn::Move_XAxis(float AxisValue)
 void AMyPawn::Move_YAxis(float AxisValue)
 {
 
-	//ÃÊ´ç 100À¯´ÖÀ» ÁÂ ¶Ç´Â ¿ì·Î ¿òÁ÷ÀÓ
+	//ï¿½Ê´ï¿½ 100ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CurrnntVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
 
 }
