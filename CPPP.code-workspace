@@ -10,8 +10,17 @@
 		}
 	],
 	"settings": {
-		"typescript.tsc.autoDetect": "off"
-	},
+		"typescript.tsc.autoDetect": "off",
+		"C_Cpp.default.forcedInclude": [
+			"${default}",
+			"J:\\UE4_Projects\\CPPP\\Intermediate\\Build\\Win64\\UE4Editor\\Development\\CPPP\\Definitions.CPPP.h",
+			"J:\\UE4_Projects\\CPPP\\Intermediate\\Build\\Win64\\CPPPEditor\\Development\\Engine\\SharedPCH.Engine.ShadowErrors.h"
+		],
+		"cSpell.words": [
+			"api",
+			"cppp"
+		]
+},
 	"extensions": {
 		"recommendations": [
 			"ms-vscode.cpptools",

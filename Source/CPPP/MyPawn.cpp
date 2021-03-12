@@ -31,6 +31,8 @@ void AMyPawn::BeginPlay()
 // Called every frame
 void AMyPawn::Tick(float DeltaTime)
 {
+
+	Super::Tick(DeltaTime);
 	//Grow �׼ǿ� ���� Ű��� ���̴� �� ó��
 	{
 		float CurrentScale = OurVisibleComponent->GetComponentScale().X;
@@ -81,7 +83,7 @@ void AMyPawn::Move_XAxis(float AxisValue)
 {
 
 	//�ʴ� 100������ �� �Ǵ� �ڷ� ������
-	CurrnntVelocity.X = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
+	CurrentVelocity.X = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
 
 }
 
@@ -89,7 +91,7 @@ void AMyPawn::Move_YAxis(float AxisValue)
 {
 
 	//�ʴ� 100������ �� �Ǵ� ��� ������
-	CurrnntVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
+	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100.0f;
 
 }
 
@@ -100,3 +102,7 @@ void AMyPawn::StartGrowing()
 
 }
 
+void AMyPawn::StopGrowing()
+{
+	bGrowing = false;
+}
